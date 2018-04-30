@@ -1,0 +1,39 @@
+.book-pic{
+	background-image: url("../../images/2d6c505e9f92c2262951079f4822b1a4_s.jpg") ;
+}
+
+.login{
+  padding-bottom: 30px;
+}
+.register{
+  height: 312px;
+  padding-bottom: 30px;
+}
+.register-content {
+  padding: 15px 15px 35px 15px;
+  margin-top:  5%;
+  border-radius: 20px;
+  background-color: #e4e1e1;
+  text-align: center;
+  font-size: 10px;
+}
+
+.top-btn{
+  border-radius: 15px;
+  font-size: 20px;
+  background-color: #f5f5f5;
+  color: blue;
+  padding: 5px 15px;
+}
+.header-form{
+  background-color: #f8f8f8;
+  border-radius: 20px; 
+  padding-top: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.check p {
+  text-align: left;
+  padding: 11px 15px 0px 15px;
+  font-size: 16px;
+}
