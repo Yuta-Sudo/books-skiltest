@@ -13,7 +13,7 @@ if(!empty($_POST)){
   $password=sha1($_SESSION['register']['password']);
   $pic= $_SESSION['register']['pic'];
 
-  $sql = "INSERT INTO `book_members` SET `nickname` = ? , `email` =  ?, `password` = ? , `profile_pic` = ? ,`member_del_flg`= 0,`created` = NOW()";
+  $sql = 'INSERT INTO `book_members` SET `nickname` = ? , `email` =  ?, `password` = ? , `profile_pic` = ? ,`member_del_flg`= 0,`created` = NOW()';
   $data = array($nickname, $email,$password, $pic);
   $stmt = $dbh->prepare($sql);
   $stmt->execute($data);
