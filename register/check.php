@@ -8,17 +8,18 @@ session_start();
   // var_dump($_SESSION);
   // echo('</pre>');
 if(!empty($_POST)){
-  $nickname= $_SESSION['register']['nickname'];
-  $email= $_SESSION['register']['email'];
-  $password=sha1($_SESSION['register']['password']);
-  $pic= $_SESSION['register']['pic'];
+  $nickname= $_POST['nickname'];
+  $email= $_POST['email'];
+  $password=sha1($_POST['password']);
+  $pic= $_POST['pic'];
 
   $sql = 'INSERT INTO `book_members` SET `nickname` = ? , `email` =  ?, `password` = ? , `profile_pic` = ? ,`member_del_flg`= 0,`created` = NOW()';
   $data = array($nickname, $email,$password, $pic);
   $stmt = $dbh->prepare($sql);
   $stmt->execute($data);
+  $_SESSION['nickname'] = $_SESSION['register']['nickname'];
 
-  unset($_SESSION);
+  unset($_SESSION['register']);
   header('Location: ../home.php');
  	exit();
 }
@@ -83,37 +84,15 @@ if(!empty($_POST)){
 			<div class="gtco-container">
 				<div class="row">
 					<div class="col-sm-4 col-xs-12">
-						<div><a href="../index.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">登録確認</h1></a></div>
+						<div><a href="../index.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">新規登録</h1></a></div>
 					</div>
 					<div class="col-xs-8 text-right menu-1">
-
-<!-- ログイン、登録、確認画面ではコメントアウト// -->
-					<!-- 	<ul>
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li class="has-dropdown">
-								<a href="services.html">Services</a>
-								<ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
-								</ul>
-							</li>
-							<li class="has-dropdown">
-								<a href="#">Dropdown</a>
-								<ul class="dropdown">
-									<li><a href="#">HTML5</a></li>
-									<li><a href="#">CSS3</a></li>
-									<li><a href="#">Sass</a></li>
-									<li><a href="#">jQuery</a></li>
-								</ul>
-							</li>
-							<li><a href="portfolio.html">Portfolio</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul> -->
-<!-- // -->
-
+						<div clas="row">
+							<ul>
+								<li class="col-xs-6 text-center menu-1"><p>投稿する</p></li>
+								<li class="col-xs-6 text-center menu-1"><p style="color: #fff; text-decoration: underline;">マイページ</p></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -136,23 +115,40 @@ if(!empty($_POST)){
 															<!-- ニックネーム -->
 															<div class="form-group">
 																<label class="col-sm-4 control-label">ニックネーム:</label>
-																<div class="col-sm-8"><p class="check"><?php echo($_SESSION['register']['nickname']); ?></p></div>
+																<div class="col-sm-8">
+																	<p class="check"><?php echo($_SESSION['register']['nickname']); ?>
+																	<input type="hidden" name="nickname" value="<?php echo($_SESSION['register']['nickname']) ?>">
+																	</p>
+																</div>
 															</div>
 															<!-- メールアドレス -->
 															<div class="form-group">
 																<label class="col-sm-4 control-label">メールアドレス:</label>
-																<div class="col-sm-8"><p class="check"><?php echo($_SESSION['register']['email']); ?></p></div>
+																<div class="col-sm-8">
+																	<p class="check">
+																		<?php echo($_SESSION['register']['email']); ?>
+																		<input type="hidden" name="email" value="<?php echo($_SESSION['register']['email']) ?>">
+																	</p>
+																</div>
 															</div>
 															<!-- パスワード -->
 															<div class="form-group">
 																<label class="col-sm-4 control-label">パスワード:</label>
-																<div class="col-sm-8"><p class="check"><?php echo($_SESSION['register']['password']); ?></p></div>
+																<div class="col-sm-8">
+																	<p class="check">
+																		<?php echo($_SESSION['register']['password']); ?>
+																		<input type="hidden" name="password" value="<?php echo($_SESSION['register']['password']) ?>">
+																	</p>
+																</div>
 															</div>
 															<!-- プロフィール写真 -->
 															<div class="form-group">
 																<label class="col-sm-4 control-label">プロフィール写真:</label>
-																<div class="col-sm-8" ><img style="width: 200px; height: 200px; border-radius: 20;" src="../pic_profile/<?php echo($_SESSION['register']['pic']); ?>"></div>
+																<div class="col-sm-8" >
+																	<img style="width: 200px; height: 200px; border-radius: 20;" src="../pic_profile/<?php echo($_SESSION['register']['pic']); ?>">
+																	<input type="hidden" name="pic" value="<?php echo($_SESSION['register']['pic']) ?>">
 																</div>
+															</div>
 															<!-- 送信 -->
 															<div class="form-group control-label" style="padding:0px 30px;">
 																<input type="submit" class="top-btn" value="登録" style="width: 100%;" >
