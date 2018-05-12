@@ -1,12 +1,13 @@
 <?php 
 require('dbconnect.php');
+session_start();
 // session_start();
 // require('func.php');
 // login_check();
 // $_SESSION['member_id'] = 2;
-    echo('<br>');  echo('<br>');
-  echo('<br>');  echo('<br>');
-  echo('<br>');  echo('<br>');
+  // echo('<br>');  echo('<br>');
+  // echo('<br>');  echo('<br>');
+  // echo('<br>');  echo('<br>');
   $recommends = array();
   // $recommend_spl = 'SELECT `book_recommend` . * , `book_members` . `nickname` , `book_members` . `profile_pic` FROM `book_recommend` LEFT JOIN `book_members` on `book_recommend` . `member_id` = `book_members` . `member_id` WHERE `book_recommend` . `book_del_flg` = 0 AND `book_recommend` . `member_id` != '.$_SESSION['member_id'].' ORDER BY `book_recommend` . `created` DESC';
 
@@ -22,8 +23,6 @@ require('dbconnect.php');
       }
     $recommends[] = $recommend;
   }
-
-  var_dump($recommends);
 
  ?>
 <!DOCTYPE HTML>
@@ -88,64 +87,68 @@ body{
 	background-image: url("assets/images/p0521_l.png");
 	background-size: cover; }
 </style>
-	<div class="gtco-loader"></div>
-	
-	<div id="page">
-
-		<nav class="gtco-nav" role="navigation">
-			<div class="gtco-container">
-				<div class="row">
-					<div class="col-sm-4 col-xs-12">
-						<div><a href="index.html"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
-					</div>
-					<div class="col-xs-8 text-right menu-1">
-						<ul>
-							<li class="active"><a href="home.php">Home</a></li>
-							<li><a href="post.php">投稿する</a></li>
-							<li><a href="profile.php">マイページ</a></li>
-							<li><a href="logout.php">ログアウト</a></li>
-						</ul>
-					</div>
+<div class="gtco-loader"></div>
+<div id="page">
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div><a href="home.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
 				</div>
-			</div>
-		</nav>
-
-
-		<div class="gtco-section gtco-testimonial gtco-gray">
-			<div class="gtco-container">
-				<div class="row row-pb-sm">
-					<div class="col-md-8 col-md-offset-2 gtco-heading text-center">
-						<h2>タイムライン</h2>
-						<p>全国のユーザーのおすすめ本をみてみよう！</p>
-					</div>
-				</div>
-
-				<div class="row">
-					<?php foreach ($recommends as $review) :?>
-
-					<a href="detail.php?id=<?php echo $review['recommend_id'] ?>" class="">
-						<div class="col-md-3 col-sm-3 review animate-box ">
-							<div class="gtco-testimony gtco-left">
-								<blockquote>
-									<div>
-									<img src="pic_reommend/<?php echo($review['book_pic']); ?>" width="200" height="200">
-									</div>
-									<cite class="author"><?php echo $review['nickname'] ?></cite>
-
-									<div class="row">
-										<div class="col-md-12 col-sm-12" >
-									<p style="word-wrap: break-word; display: inline-block; width: 200px;"><?php echo $review['reason'] ?></p>
-									</div>
-									</div>
-								</blockquote>	
-							</div>
-						</div>
-					</a>
-				<?php endforeach; ?>
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+						<li class="active"><a href="home.php">Home</a></li>
+						<li><a href="post.php">投稿する</a></li>
+						<li><a href="profile.php">マイページ</a></li>
+						<li><a href="logout.php">ログアウト</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
+	</nav>
+	<div class="gtco-section gtco-testimonial gtco-gray">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-3 col-sm-3 review animate-box ">
+					<div style="background-color: #fff; border-radius: 3%; padding: 20px 15px;">
+						<div style="margin: 20px 0px;">
+							<h2>タイムライン</h2>
+							<p style="font-size: 20px;">
+								ようこそ<br>
+								<?php echo ($_SESSION['nickname']) ?>さん<br>
+								</p>
+								<p style="font-size: 18px; margin-top: 10px;">
+								他の人の<br>
+								おすすめ本をみてみよう！<br>
+							</p>
+						</div>
+					</div>
+				</div><?php foreach ($recommends as $review) :?>
+				<div class="col-md-3 col-sm-3 review animate-box ">
+					<div class="gtco-testimony gtco-left">
+						<blockquote>
+							<div style="background-color:rgba(255,255,255,0.8);">
+								<a href="detail.php?id=<?php echo $review['recommend_id'] ?>" class="">
+									<div>
+										<img src="pic_reommend/<?php echo($review['book_pic']); ?>" width="200" height="200">
+									</div>
+								</a>
+								<cite class="author" style="margin-top: 2px;">
+									<?php echo $review['nickname'] ?>
+								</cite>
+								<div class="row">
+									<div class="col-md-12 col-sm-12" style="height:85px; overflow:hidden; overflow-y:scroll; border:0px solid #ccc; padding:0 20px;">
+										<p style="color:#000; word-wrap: break-word; display: inline-block; width: 200px;"><?php echo $review['reason'] ?></p>
+									</div>
+								</div>
+							</div>
+						</blockquote>
+					</div>
+				</div><?php endforeach; ?>
+			</div>
+		</div>
 	</div>
+</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
