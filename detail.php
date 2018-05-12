@@ -22,7 +22,7 @@ require('dbconnect.php');
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>新規投稿</title>
+	<title>詳細</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -74,10 +74,10 @@ require('dbconnect.php');
 	<div id="page">
 
 		<nav class="gtco-nav" role="navigation">
-			<div class="gtco-container">
+			<div class="gtco-container" ">
 				<div class="row">
 					<div class="col-sm-4 col-xs-12">
-						<div><a href="index.html"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">おすすめ詳細</h1></a></div>
+						<div><a href="index.html"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
 					</div>
 					<div class="col-xs-8 text-right menu-1">
 						<ul>
@@ -92,14 +92,14 @@ require('dbconnect.php');
 		</nav>
 
 		<header id="gtco-header" class="gtco-cover" role="banner">
-			<style>#gtco-header{margin-top:-53px;   background-image: url("assets/images/p0521_l.png")}</style>
+			<style>#gtco-header{margin-top:-53px;   background-image: url("assets/images/p0521_l.png") } </style>
 			<div class="gtco-container">
 				<div class="row header-img">
 					<div class="col-md-1 col-xs-0"></div>
 					<div class="col-md-10 col-md-offset-0 text-left">
 						<div class="display-t">
 							<div class="display-tc">
-								<div class="row header-form">
+								<div class="row header-form" >
 									<?php if (isset($_SESSION['id']) && $recommend['member_id'] == $_SESSION['id']) : ?>
 									<div class="row" >
 										<div class="col-md-4"></div>
@@ -115,7 +115,6 @@ require('dbconnect.php');
 										</div>
 									</div>
 									<?php endif ?>
-
 									<h1 style="text-align:center; font-family: 'Gulim' ,sans-serif ;">本の詳細</h1>
 									<form method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
 											<div class="login">
@@ -123,9 +122,9 @@ require('dbconnect.php');
 													<!-- 本の名前 -->
 														<div class="form-group" style="padding:0px 30px;">
 															<label class="control-label">本の名前</label>
-															<div><p class="check"><?php echo($recommend['bookname']); ?></p>
+															<div><p class="check" style="display:inline; height: auto;"><?php echo($recommend['bookname']); ?></p>
 														</div>
-													<!-- パスワード -->
+													<!-- 写真 -->
 														<div class="form-group" style="padding:0px 30px;">
 															<label class=" control-label">本の写真</label>
 															<div>
@@ -134,11 +133,11 @@ require('dbconnect.php');
 														</div>
 													</div>
 												</div>
-												<div class="col-md-6 copy animate-box" >
+												<div class="col-md-6 copy animate-box"" >
 													<!-- 本の名前 -->
-													<div class="form-group" style="padding:0px 30px;">
+													<div class="form-group" style="padding:0px 30px; display:inline; height: auto;" >
 														<label class="control-label">おすすめする理由</label>
-														<div><p class="check"><?php echo($recommend['reason']); ?></p>
+														<div ><p class="check" style="display:inline; height: auto;"><?php echo($recommend['reason']); ?></p>
 													</div>
 													</div>
 												</div>
