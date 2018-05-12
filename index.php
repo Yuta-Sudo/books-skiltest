@@ -13,17 +13,18 @@ if (isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
     $member = $stmt->fetch(PDO::FETCH_ASSOC);
-
+		$_SESSION['nickname'] = $member['nickname'];
     if($member == false){
       $error['login'] = 'failed';
     }else{
       //認証成功
       $_SESSION['id'] = $member['member_id'];
       $_SESSION['time'] = time();
-    if ($_POST['save'] == 'on'){
+    if (isset($_POST['save']) && $_POST['save'] == 'on'){
       setcookie('email', $_POST['email'], time()+60*60*24*14);
       setcookie('password' , $_POST['password'], time()+60*60*24*14);
     }
+    header('Location: home.php');
       exit;
 }
 }
@@ -83,7 +84,13 @@ if (isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+	body{
+  background-image: url(../images/2d6c505e9f92c2262951079f4822b1a4_s.jpg);
+  background-size: cover;
+  color: black;
+  height:100%;}
+</style>
 	</head>
 	<body>
 
@@ -93,7 +100,7 @@ if (isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
 			<div class="gtco-container">
 				<div class="row">
 					<div class="col-sm-4 col-xs-12">
-						<div><a href="../index.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">新規入会</h1></a></div>
+						<div><a href="../index.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
 					</div>
 					<div class="col-xs-8 text-right menu-1">
 
@@ -171,9 +178,11 @@ if (isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
 											</div>
 											<div class="col-md-6 text-center animate-box register">
 												<div class="register-content">
-													<h1 style="font-size: 30px; ">ユーザー登録</h1>
-													<p>いろんな人のおすすめの本を見てみよう</p>
-													<a href="register/register.php"><button class="top-btn" type='submit' class="button button-primary " >新規登録する</button></a>
+													<h1 style="font-size: 30px; margin-top: 30px;">ユーザー登録</h1>
+													<p style="font-size: 15px;">いろんな人のおすすめの本を見てみよう</p>
+													<a href="register/register.php">
+														<button style="margin-top: 30px;" type='submit' class="top-btn button button-primary " >新規登録する</button>
+													</a>
 												</div>
 											</div>
 										</div>
