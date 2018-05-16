@@ -88,56 +88,30 @@ if (isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
 	body{
   background-image: url(../images/2d6c505e9f92c2262951079f4822b1a4_s.jpg);
   background-size: cover;
-  color: black;
-  height:100%;}
-</style>
-	</head>
-	<body>
-
+  color: black;}
+	</style>
+</head>
+<body>
 	<div class="gtco-loader"></div>
 	<div id="page">
 		<nav class="gtco-nav" role="navigation">
-			<div class="gtco-container">
-				<div class="row">
-					<div class="col-sm-4 col-xs-12">
-						<div><a href="../index.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
-					</div>
-					<div class="col-xs-8 text-right menu-1">
-
-<!-- ログイン、登録、確認画面ではコメントアウト// -->
-					<!-- 	<ul>
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li class="has-dropdown">
-								<a href="services.html">Services</a>
-								<ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
-								</ul>
-							</li>
-							<li class="has-dropdown">
-								<a href="#">Dropdown</a>
-								<ul class="dropdown">
-									<li><a href="#">HTML5</a></li>
-									<li><a href="#">CSS3</a></li>
-									<li><a href="#">Sass</a></li>
-									<li><a href="#">jQuery</a></li>
-								</ul>
-							</li>
-							<li><a href="portfolio.html">Portfolio</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul> -->
-<!-- // -->
-
+				<div class="gtco-container" >
+					<div class="row">
+						<div class="col-md-4 col-xs-12">
+							<div><a href="home.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
+						</div>
+						<div class="col-xs-8 text-right menu-1">
+							<ul>
+								<li class="active"><a href="home.php">Home</a></li>
+								<li><a href="post.php">投稿する</a></li>
+								<li><a href="mypage.php">マイページ</a></li>
+								<li><a href="logout.php">ログアウト</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
-			</div>
 		</nav>
-
-		<header id="gtco-header" class="gtco-cover" role="banner">
-			<style>#gtco-header{margin-top:-53px;}</style>
+		<header id="gtco-header" class="gtco-cover" role="banner"  style="padding-top: 45px;">
 			<div class="gtco-container">
 				<div class="row header-img">
 					<div class="col-md-1 col-xs-0"></div>
@@ -146,70 +120,71 @@ if (isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
 							<div class="display-tc">
 								<div class="row header-form">
 									<h1 style="text-align:center; font-family: 'Gulim' ,sans-serif ;">おすすめの本を共有しよう</h1>
-										<div class="col-md-6 copy animate-box" >
-											<div class="login">
-												<form method="post" action="" class="form-horizontal" role="form">
-													<!-- メールアドレス -->
-													<div class="form-group" style="padding:0px 30px;">
-														<label class="control-label">メールアドレス</label>
-														<input type="email" name="email" class="form-control" placeholder="例： seed@nex.com">
-													</div>
-													<!-- パスワード -->
-													<div class="form-group" style="padding:0px 30px;">
-														<label class="control-label">パスワード</label>
-														<input type="password" name="password" class="form-control" placeholder="">
-													</div>
-													<div class="row" style="padding:0px 30px; ">
-														<label class="col-sm-6 control-label"">自動ログイン</label>
-														<div class=" col-sm-6 form-group" style="padding-top: 10px;">
-															<input type="checkbox" name="save" value="on">オンにする
-														</div>
-													</div>
-													<div class="form-group control-label" style="padding:0px 30px;">
-														<button class="top-btn" type='submit' class="button button-primary " style="width: 100%;" >ログイン</button>
-													</div>
-													<?php if ((isset($error['login'])) && $error['login'] == 'failed') { ?>
-														<div>
-															<p class= "error">emailまたはpasswordが間違っています。</p>
-														</div>
-													<?php } ?>
-													</form>
+									<div class="col-md-6 copy animate-box" >
+										<div class="login">
+											<form method="post" action="" class="form-horizontal" role="form">
+												<!-- メールアドレス -->
+												<div class="form-group" style="padding:0px 30px;">
+													<label class="control-label">メールアドレス</label>
+													<input type="email" name="email" class="form-control" placeholder="例： seed@nex.com">
 												</div>
-											</div>
-											<div class="col-md-6 text-center animate-box register">
-												<div class="register-content">
-													<h1 style="font-size: 30px; margin-top: 30px;">ユーザー登録</h1>
-													<p style="font-size: 15px;">いろんな人のおすすめの本を見てみよう</p>
-													<a href="register/register.php">
-														<button style="margin-top: 30px;" type='submit' class="top-btn button button-primary " >新規登録する</button>
-													</a>
+												<!-- パスワード -->
+												<div class="form-group" style="padding:0px 30px;">
+													<label class="control-label">パスワード</label>
+													<input type="password" name="password" class="form-control" placeholder="">
 												</div>
-											</div>
+												<div class="row" style="padding: 0px 30px;">
+													<label class="col-xs-6 control-label">自動ログイン</label>
+													<div class=" col-xs-6 form-group" style="padding-top: 10px;">
+														<input type="checkbox" name="save" value="on">オンにする
+													</div>
+												</div>
+												<div class="form-group control-label" style="padding:0px 30px;">
+													<button class="top-btn" type='submit' class="button button-primary " style="width: 100%;" >ログイン</button>
+												</div>
+												<?php if ((isset($error['login'])) && $error['login'] == 'failed') { ?>
+												<div>
+													<p class= "error">emailまたはpasswordが間違っています。</p>
+												</div>
+												<?php } ?>
+											</form>
 										</div>
+									</div>
+									<div class="col-md-6 text-center animate-box register">
+										<div class="register-content">
+											<h1 style="font-size: 30px; margin-top: 30px;">ユーザー登録</h1>
+											<p style="font-size: 15px;">いろんな人のおすすめの本を見てみよう</p>
+											<a href="register/register.php">
+												<button style="margin-top: 30px;" type='submit' class="top-btn button button-primary">新規登録する</button>
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-1 col-xs-0"></div>
 					</div>
+					<div class="col-md-1 col-xs-0"></div>
 				</div>
+			</div>
 		</header>
-		<!-- END #gtco-header -->
-	<!-- jQuery -->
-	<script src="assets/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="assets/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="assets/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="assets/js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<script src="assets/js/magnific-popup-options.js"></script>
-	<!-- Main -->
-	<script src="assets/js/main.js"></script>
+	</div>
+<!-- END #gtco-header -->
+<!-- jQuery -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="assets/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="assets/js/jquery.waypoints.min.js"></script>
+<!-- Carousel -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Magnific Popup -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/magnific-popup-options.js"></script>
+<!-- Main -->
+<script src="assets/js/main.js"></script>
 
-	</body>
+</body>
 </html>
 
