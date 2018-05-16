@@ -1,30 +1,30 @@
 <?php 
 require('dbconnect.php');
 session_start();
-// session_start();
-// require('func.php');
-// login_check();
-// $_SESSION['member_id'] = 2;
-  // echo('<br>');  echo('<br>');
-  // echo('<br>');  echo('<br>');
-  // echo('<br>');  echo('<br>');
-  $recommends = array();
-  // $recommend_spl = 'SELECT `book_recommend` . * , `book_members` . `nickname` , `book_members` . `profile_pic` FROM `book_recommend` LEFT JOIN `book_members` on `book_recommend` . `member_id` = `book_members` . `member_id` WHERE `book_recommend` . `book_del_flg` = 0 AND `book_recommend` . `member_id` != '.$_SESSION['member_id'].' ORDER BY `book_recommend` . `created` DESC';
 
-  $recommend_spl = 'SELECT `book_recommends` . * , `book_members` . `nickname` , `book_members` . `profile_pic` FROM `book_recommends` LEFT JOIN `book_members` on `book_recommends` . `member_id` = `book_members` . `member_id` WHERE `book_recommends` . `book_del_flg` = 0  ORDER BY `book_recommends` . `created` DESC';
-  $recommend_stmt = $dbh->prepare($recommend_spl);
-  $recommend_stmt->execute();
+require('func.php');
+login_check();
 
-  while (true) {
-    $recommend = $recommend_stmt->fetch(PDO::FETCH_ASSOC);
-     // var_dump($recommend);
-    if ($recommend == false) {
-      break; // データがなくなったら繰り返し処理を終える
-      }
-    $recommends[] = $recommend;
-  }
 
- ?>
+	$recommends = array();
+	$recommend_spl = 'SELECT `book_recommends` . * , `book_members` . `nickname` , `book_members` . `profile_pic` FROM `book_recommends` LEFT JOIN `book_members` on `book_recommends` . `member_id` = `book_members` . `member_id` WHERE `book_recommends` . `book_del_flg` = 0 AND `book_recommends` . `member_id` != '.$_SESSION['id'].' ORDER BY `book_recommends` . `created` DESC';
+	$recommend_stmt = $dbh->prepare($recommend_spl);
+	$recommend_stmt->execute();
+
+	while (true) {
+	  $recommend = $recommend_stmt->fetch(PDO::FETCH_ASSOC);
+	   // var_dump($recommend);
+	  if ($recommend == false) {
+	    break; // データがなくなったら繰り返し処理を終える
+	    }
+	  $recommends[] = $recommend;
+	}
+//検証用
+//echo('<br>');  echo('<br>');
+// echo('<br>');  echo('<br>');
+// echo('<br>');  echo('<br>');
+// var_dump($_SESSION); 
+	?>
 <!DOCTYPE HTML>
 <!--
 	Cube by FreeHTML5.co
@@ -90,7 +90,7 @@ body{
 <div class="gtco-loader"></div>
 <div id="page">
 	<nav class="gtco-nav" role="navigation">
-		<div class="gtco-container">
+		<div class="gtco-container" >
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
 					<div><a href="home.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
@@ -99,14 +99,14 @@ body{
 					<ul>
 						<li class="active"><a href="home.php">Home</a></li>
 						<li><a href="post.php">投稿する</a></li>
-						<li><a href="profile.php">マイページ</a></li>
+						<li><a href="mypage.php">マイページ</a></li>
 						<li><a href="logout.php">ログアウト</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</nav>
-	<div class="gtco-section gtco-testimonial gtco-gray">
+	<div class="gtco-section gtco-testimonial gtco-gray" style="padding-top: 35px;">
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-3 col-sm-3 review animate-box ">
