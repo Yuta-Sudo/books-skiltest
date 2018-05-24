@@ -1,8 +1,8 @@
 <?php 
 require('dbconnect.php');
-// session_start();
-// require('func.php');
-// login_check();
+session_start();
+require('func.php');
+login_check();
 
 
 	$recommend_sql='SELECT * FROM `book_recommends` WHERE `recommend_id` = ? ';
@@ -72,7 +72,6 @@ require('dbconnect.php');
 
 	<div class="gtco-loader"></div>
 	<div id="page">
-
 		<nav class="gtco-nav" role="navigation">
 			<div class="gtco-container" ">
 				<div class="row">
@@ -92,7 +91,7 @@ require('dbconnect.php');
 		</nav>
 
 		<header id="gtco-header" class="gtco-cover" role="banner">
-			<style>#gtco-header{margin-top:-53px;   background-image: url("assets/images/p0521_l.png") } </style>
+			<style>#gtco-header{  background-image: url("assets/images/p0521_l.png") } </style>
 			<div class="gtco-container">
 				<div class="row header-img">
 					<div class="col-md-1 col-xs-0"></div>
