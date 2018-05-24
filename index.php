@@ -1,33 +1,33 @@
 <?php 
 require('dbconnect.php');
 session_start();
-if (isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
-  $_POST['email]'] = $_COOKIE['email]'];
-  $_POST['password]'] = $_COOKIE['password]'];
-  $_POST['save'] = 'on' ;
-}
-  if (!empty($_POST) && isset($_POST)) {
-  //ログイン認証
-    $sql =' SELECT * FROM `book_members` WHERE `email`= ? AND `password`= ? ';
-    $data = array( $_POST['email'] , sha1($_POST['password']) );
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute($data);
-    $member = $stmt->fetch(PDO::FETCH_ASSOC);
-		$_SESSION['nickname'] = $member['nickname'];
-    if($member == false){
-      $error['login'] = 'failed';
-    }else{
-      //認証成功
-      $_SESSION['id'] = $member['member_id'];
-      $_SESSION['time'] = time();
-    if (isset($_POST['save']) && $_POST['save'] == 'on'){
-      setcookie('email', $_POST['email'], time()+60*60*24*14);
-      setcookie('password' , $_POST['password'], time()+60*60*24*14);
-    }
-    header('Location: home.php');
-      exit;
-}
-}
+if(isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
+	$_POST['email]'] = $_COOKIE['email]'];
+	$_POST['password]'] = $_COOKIE['password]'];
+	$_POST['save'] = 'on' ;
+	}
+if (!empty($_POST) && isset($_POST)) {
+	//ログイン認証
+	$sql =' SELECT * FROM `book_members` WHERE `email`= ? AND `password`= ? ';
+	$data = array( $_POST['email'] , sha1($_POST['password']) );
+	$stmt = $dbh->prepare($sql);
+	$stmt->execute($data);
+	$member = $stmt->fetch(PDO::FETCH_ASSOC);
+	$_SESSION['nickname'] = $member['nickname'];
+		if($member == false){
+		$error['login'] = 'failed';
+		}else{
+			//認証成功
+			$_SESSION['id'] = $member['member_id'];
+			$_SESSION['time'] = time();
+			if(isset($_POST['save']) && $_POST['save'] == 'on'){
+			setcookie('email', $_POST['email'], time()+60*60*24*14);
+			setcookie('password' , $_POST['password'], time()+60*60*24*14);
+			}
+		header('Location: home.php');
+		exit;
+		}
+	}
 
  ?>
 <!DOCTYPE HTML>
@@ -58,7 +58,7 @@ if (isset($_COOKIE['email]']) && !empty($_COOKIE['email]'])) {
 	<meta name="twitter:card" content="" />
 
 	<link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,700" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="assets/css/animate.css">
 	<!-- Icomoon Icon Fonts-->
