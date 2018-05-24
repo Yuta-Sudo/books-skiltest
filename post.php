@@ -15,8 +15,11 @@ if(!empty($_POST)){
 	$error['image']  = 'type';
 	}
 
+	$bookname = htmlspecialchars($_POST['bookname']);
+	$reason = htmlspecialchars($_POST['reason']);
+
 	$book_sql = 'INSERT INTO `book_recommends` SET  `bookname`=?, `member_id`=?, `reason`=?, `book_pic`=?, `created` = NOW()';
-	$book_data = array($_POST['bookname'],$_SESSION['id'],$_POST['reason'],$book_pic);
+	$book_data = array($bookname,$_SESSION['id'],$reason,$book_pic);
 	$stmt = $dbh->prepare($book_sql);
 	$stmt->execute($book_data);
 	header('Location: home.php');
@@ -77,9 +80,7 @@ if(!empty($_POST)){
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	<style>#gtco-header{ margin: 0px; background-image: url("assets/images/p0521_l.png")}
-#page{margin: 0px ;padding-top: 40px; ;
-}</style>
+	<style>#gtco-header{  background-image: url("assets/images/p0521_l.png") } </style>
 	</head>
 	<body>
 
