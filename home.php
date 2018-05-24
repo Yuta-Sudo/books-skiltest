@@ -6,7 +6,7 @@ login_check();
 
 
 	$recommends = array();
-	$recommend_spl = "SELECT `book_recommends` . * , `book_members` . `nickname` , `book_members` . `profile_pic` FROM `book_recommends` LEFT JOIN `book_members` on `book_recommends` . `member_id` = `book_members` . `member_id` WHERE `book_recommends` . `book_del_flg` = 0 AND `book_recommends` . `member_id` != " . $_SESSION['id'] . " ORDER BY `book_recommends` . `created` DESC";
+	$recommend_spl = "SELECT `book_recommends` . * , `book_members` . `nickname` , `book_members` . `profile_pic` FROM `book_recommends` LEFT JOIN `book_members` on `book_recommends` . `member_id` = `book_members` . `member_id` WHERE `book_recommends` . `book_del_flg` = 0 ORDER BY `book_recommends` . `created` DESC";
 	$recommend_stmt = $dbh->prepare($recommend_spl);
 	$recommend_stmt->execute();
 
@@ -135,7 +135,7 @@ body{
 						</div>
 					</div>
 				</div><?php foreach ($recommends as $review) :?>
-				<div class="col-md-3 col-sm-3 review ">
+				<div class="col-md-3 col-sm-3 review " style="height: 307px; margin-bottom: 30px;">
 					<div class="gtco-testimony gtco-left">
 						<blockquote>
 							<?php if ($review['member_id'] != $_SESSION['id']): ?>
