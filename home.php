@@ -1,13 +1,12 @@
-<?php 
+<?php
 require('dbconnect.php');
 session_start();
-
 require('func.php');
 login_check();
 
 
 	$recommends = array();
-	$recommend_spl = 'SELECT `book_recommends` . * , `book_members` . `nickname` , `book_members` . `profile_pic` FROM `book_recommends` LEFT JOIN `book_members` on `book_recommends` . `member_id` = `book_members` . `member_id` WHERE `book_recommends` . `book_del_flg` = 0 AND `book_recommends` . `member_id` != '.$_SESSION['id'].' ORDER BY `book_recommends` . `created` DESC';
+	$recommend_spl = "SELECT `book_recommends` . * , `book_members` . `nickname` , `book_members` . `profile_pic` FROM `book_recommends` LEFT JOIN `book_members` on `book_recommends` . `member_id` = `book_members` . `member_id` WHERE `book_recommends` . `book_del_flg` = 0 AND `book_recommends` . `member_id` != " . $_SESSION['id'] . " ORDER BY `book_recommends` . `created` DESC";
 	$recommend_stmt = $dbh->prepare($recommend_spl);
 	$recommend_stmt->execute();
 
@@ -20,10 +19,16 @@ login_check();
 	  $recommends[] = $recommend;
 	}
 //検証用
-//echo('<br>');  echo('<br>');
 // echo('<br>');  echo('<br>');
 // echo('<br>');  echo('<br>');
-// var_dump($_SESSION); 
+// echo('<br>');  echo('<br>');
+
+// echo ('<pre>');
+// var_dump($_SESSION);
+// echo ('</pre>');
+// echo ('<pre>');
+// var_dump($myid);
+// echo ('</pre>');
 	?>
 <!DOCTYPE HTML>
 <!--
@@ -31,7 +36,7 @@ login_check();
 	Twitter: http://twitter.com/gettemplateco
 	URL: http://freehtml5.co
 -->
-<html>
+<html >
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -106,42 +111,63 @@ body{
 			</div>
 		</div>
 	</nav>
-	<div class="gtco-section gtco-testimonial gtco-gray" style="padding-top: 35px;">
+	<div class="gtco-section gtco-testimonial gtco-gray" style="padding-top: 100px;">
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-3 col-sm-3 review animate-box ">
-					<div style="background-color: #fff; border-radius: 3%; padding: 20px 15px;">
-						<div style="margin: 20px 0px;">
+					<div style="background-color: #fff; border-radius: 3%; padding: 10px 15px;">
+						<div style="margin: 10px 0px;">
 							<h2>タイムライン</h2>
 							<p style="font-size: 20px;">
 								ようこそ<br>
 								<?php echo ($_SESSION['nickname']) ?>さん<br>
 								</p>
-								<p style="font-size: 18px; margin-top: 10px;">
+								<p style="font-size: 18px; margin-top: 4px;">
 								他の人の<br>
-								おすすめ本をみてみよう！<br>
-							</p>
+								おすすめ本をみてみよう！
+							  </p>
+							  <p style="font-size: 18px; margin-top: 4px;">
+								タイトルで検索する
+								</p>
+								<form method="post" =""></form>
+							<input type="text" style="width:172px;">
+							<button type="submit">検索</button>
 						</div>
 					</div>
 				</div><?php foreach ($recommends as $review) :?>
-				<div class="col-md-3 col-sm-3 review animate-box ">
+				<div class="col-md-3 col-sm-3 review ">
 					<div class="gtco-testimony gtco-left">
 						<blockquote>
+							<?php if ($review['member_id'] != $_SESSION['id']): ?>
 							<div style="background-color:rgba(255,255,255,0.8);">
-								<a href="detail.php?id=<?php echo $review['recommend_id'] ?>" class="">
-									<div>
-										<img src="pic_reommend/<?php echo($review['book_pic']); ?>" width="200" height="200">
+							<?php endif ?>
+								<?php if ($review['member_id'] == $_SESSION['id']): ?>
+								<div style="background-color:rgba(0,0,255,0.1);">
+								<?php endif ?>
+									<div class ="recommend-pic">
+										<a href="detail.php?id=<?php echo $review['recommend_id'] ?>" class="">
+											<div>
+												<img src="pic_reommend/<?php echo($review['book_pic']); ?>" width="200" height="200">
+												<div class="mask">
+													<div class="caption"><?php echo $review['bookname'] ?></div>
+												</div>
+											</div>
+										</a>
 									</div>
-								</a>
-								<cite class="author" style="margin-top: 2px;">
-									<?php echo $review['nickname'] ?>
-								</cite>
-								<div class="row">
-									<div class="col-md-12 col-sm-12" style="height:85px; overflow:hidden; overflow-y:scroll; border:0px solid #ccc; padding:0 20px;">
-										<p style="color:#000; word-wrap: break-word; display: inline-block; width: 200px;"><?php echo $review['reason'] ?></p>
+									<cite class="author" style="margin-top: 2px;">
+										<?php echo $review['nickname'] ?>
+									</cite>
+									<div class="row">
+										<div class="col-md-12 col-sm-12" style="height:85px; overflow:hidden; overflow-y:scroll; border:0px solid #ccc; padding:0 20px;">
+											<p style="color:#000; word-wrap: break-word; display: inline-block; width: 200px;"><?php echo $review['reason'] ?></p>
+										</div>
 									</div>
+								<?php if ($review['member_id'] != $_SESSION['id']): ?>
 								</div>
+								<?php endif ?>
+							<?php if ($review['member_id'] == $_SESSION['id']): ?>
 							</div>
+							<?php endif ?>
 						</blockquote>
 					</div>
 				</div><?php endforeach; ?>
@@ -150,10 +176,6 @@ body{
 	</div>
 </div>
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	
 	<!-- jQuery -->
 	<script src="assets/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
