@@ -126,12 +126,17 @@ body{
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-3 col-sm-3 review animate-box ">
-					<div style="background-color: #fff; border-radius: 3%; padding: 69.5px 15px;">
-						<div style="margin: 20px 0px;">
+					<div style="background-color: #fff; border-radius: 3%; padding: 40px 15px;">
+						<div style="padding-top: 7px;">
 							<h2>マイページ</h2>
 							<p style="font-size: 20px;">
 								自分の投稿を確認しよう
 							</p>
+						</div>
+						<div style="margin: 30px 0px; padding: 0px 16.5px;">
+							<a href="editMypage.php?id=<?php echo $_SESSION['id'] ?>">
+								<button>プロフィールを編集する</button>
+							</a>
 						</div>
 					</div>
 				</div>
