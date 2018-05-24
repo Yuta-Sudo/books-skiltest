@@ -17,9 +17,10 @@ body {
   line-height: 1.7;
   color: #777;
   background: #fff;
+  height: 100%;
 }
 
-/*ここから須藤加筆*/
+/*須藤加筆開始*/
   .book-pic{
     background-image: url("../../images/2d6c505e9f92c2262951079f4822b1a4_s.jpg") ;
   }
@@ -85,19 +86,44 @@ body {
     padding: 10px 0px;
   color: red;
   text-align: center;
-}
+  }
+  /*Homeのホバー(作品名の表示用)開始*/
+  .recommend-pic {
+  overflow: hidden;
+  position: relative; /* 相対位置指定 */
+  }
+  .recommend-pic .caption {
+    font-size: 130%;
+    text-align: center;
+    padding-top: 80px;
+    color: #fff;
+  }
+  .recommend-pic .mask {
+    width: 200px;
+    height: 200px;
+    position: absolute; /* 絶対位置指定 */
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: rgba(0,0,0,0.4);
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+  .recommend-pic:hover .mask {
+    opacity: 1;
+  }
+  /*Homeのホバー(作品名の表示用)終了*/
 
-/*ここまで須藤加筆*/
+/*須藤加筆終了*/
 
 #page {
-  padding-top: 60px;
-  position: relative;
-  overflow-x: hidden;
+/*  position: relative;
+  overflow-x: hidden;*/
   width: 100%;
-  height: 100%;
-  -webkit-transition: 0.5s;
+  height: 1080px;
+/*  -webkit-transition: 0.5s;
   -o-transition: 0.5s;
-  transition: 0.5s;
+  transition: 0.5s;*/
 }
 .offcanvas #page {
   overflow: hidden;
@@ -411,6 +437,7 @@ h1, h2, h3, h4, h5, h6, figure {
   height: 100%;
   display: table;
   width: 100%;
+  padding-top: 80px;
 }
 @media screen and (max-width: 768px) {
   .gtco-cover .display-t,
