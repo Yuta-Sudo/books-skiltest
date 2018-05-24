@@ -1,25 +1,39 @@
 <?php 
 require('../dbconnect.php');
 session_start();
-  // echo('<br>');  echo('<br>');
-  // echo('<br>');  echo('<br>');
-  // echo('<br>');  echo('<br>');
-  //  echo('<pre>');
-  // var_dump($_SESSION);
-  // echo('</pre>');
-if(!empty($_POST)){
-  $nickname= $_POST['nickname'];
-  $email= $_POST['email'];
-  $password=sha1($_POST['password']);
-  $pic= $_POST['pic'];
 
+if(!empty($_POST)){
+
+//一度使いやすく二度目の変換
+  $nickname = $_POST['nickname'];
+  $email = $_POST['email'];
+  $password =sha1($_POST['password']);
+  $pic = $_POST['pic'];
+
+//アカウント作成
   $sql = 'INSERT INTO `book_members` SET `nickname` = ? , `email` =  ?, `password` = ? , `profile_pic` = ? ,`member_del_flg`= 0,`created` = NOW()';
   $data = array($nickname, $email,$password, $pic);
   $stmt = $dbh->prepare($sql);
   $stmt->execute($data);
+
+//既存のアカウントIDの次のIDをセッションに保存
+  //安全性が疑問
+  $id_sql = 'SELECT `member_id` FROM `book_members` ORDER BY `created` DESC LIMIT 1';
+  $id_stmt = $dbh->prepare($id_sql);
+	$id_stmt->execute();
+	$id =$id_stmt -> fetch(PDO::FETCH_ASSOC);
+	$_SESSION['id'] =  intval($id['member_id']) + 1;
+
+//ポストされた情報をセッションへ
   $_SESSION['nickname'] = $_SESSION['register']['nickname'];
 
+//遷移後にlogin_checkに引っかからないように時間を追加
+  $_SESSION['time'] = time();
+
+//データベースに送ったため一度リセット
   unset($_SESSION['register']);
+
+//メインページに遷移
   header('Location: ../home.php');
  	exit();
 }
