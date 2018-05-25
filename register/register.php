@@ -5,7 +5,9 @@ session_start();
 if (!empty($_POST)) {
   if ($_POST['nickname']=='') {
     $error['nickname'] ='blank';
-    }else{
+    }elseif(mb_strlen($_POST['nickname']) > 12) {
+    	$error['nickname'] ='lengh';
+    	}else{
     $_SESSION['register']['nickname'] = $_POST['nickname'];
     }
 
@@ -152,6 +154,9 @@ if (!empty($_POST)) {
 																	<?php endif; ?>
 																	<?php if (isset($error['nickname'])&& $error['nickname']=='blank') { ?>
 																		<p class="error">ニックネームを入力してください</p>
+																	<?php } ?>
+																	<?php if (isset($error['nickname'])&& $error['nickname']=='lengh') { ?>
+																		<p class="error">半角全角１１文字以内にしてください</p>
 																	<?php } ?>
 																</div>
 															</div>
