@@ -9,14 +9,6 @@ login_check();
 	$stmt = $dbh->prepare($recommend_sql);
 	$stmt->execute($recommend_data);
 	$recommend =$stmt -> fetch(PDO::FETCH_ASSOC);
-echo('<br>'); 
-echo('<br>');
-echo('<pre>');
-var_dump($recommend) ;
-echo('</pre>');
-//echo('<pre>');
-//var_dump($hoge) ;
-//echo('</pre>');
 if(!empty($_POST)){
 	$type = substr($_FILES['book_pic']['name'], -3);
 	$type = strtolower($type);
@@ -94,27 +86,25 @@ if(!empty($_POST)){
 	</head>
 	<body>
 
-	<div class="gtco-loader"></div>
-	<div id="page">
-
-		<nav class="gtco-nav" role="navigation">
-			<div class="gtco-container">
-				<div class="row">
-					<div class="col-sm-4 col-xs-12">
-						<div><a href="index.html"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
-					</div>
-					<div class="col-xs-8 text-right menu-1">
-						<ul>
-							<li><a href="home.php">Home</a></li>
-							<li><a href="post.php">投稿する</a></li>
-							<li><a href="profile.php">マイページ</a></li>
-							<li><a href="logout.php">ログアウト</a></li>
-						</ul>
-					</div>
+<div class="gtco-loader"></div>
+<div id="page">
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container" >
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div><a href="home.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
+				</div>
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+						<li><a href="home.php">Home</a></li>
+						<li><a href="post.php">投稿する</a></li>
+						<li><a href="mypage.php">マイページ</a></li>
+						<li><a href="logout.php">ログアウト</a></li>
+					</ul>
 				</div>
 			</div>
-		</nav>
-
+		</div>
+	</nav>
 		<header id="gtco-header" class="gtco-cover" role="banner">
 			<div class="gtco-container">
 				<div class="row header-img">
@@ -173,6 +163,7 @@ if(!empty($_POST)){
 					</div>
 				</div>
 		</header>
+</div>
 <script>
 var pre = document.getElementById("selfile");
 
