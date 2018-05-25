@@ -1,8 +1,8 @@
 <?php 
 require('dbconnect.php');
 session_start();
-// require('func.php');
-// login_check();
+require('func.php');
+login_check();
 
 if(!empty($_POST)){
 	$type = substr($_FILES['book_pic']['name'], -3);
@@ -86,25 +86,23 @@ if(!empty($_POST)){
 
 	<div class="gtco-loader"></div>
 	<div id="page">
-
 		<nav class="gtco-nav" role="navigation">
-			<div class="gtco-container">
+			<div class="gtco-container" >
 				<div class="row">
 					<div class="col-sm-4 col-xs-12">
-						<div><a href="index.html"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
+						<div><a href="home.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
 					</div>
 					<div class="col-xs-8 text-right menu-1">
 						<ul>
-							<li><a href="home.php">Home</a></li>
-							<li class="active"><a href="post.php">投稿する</a></li>
-							<li><a href="profile.php">マイページ</a></li>
+							<li class="active"><a href="home.php">Home</a></li>
+							<li><a href="post.php">投稿する</a></li>
+							<li><a href="mypage.php">マイページ</a></li>
 							<li><a href="logout.php">ログアウト</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</nav>
-
 		<header id="gtco-header" class="gtco-cover" role="banner">
 			<div class="gtco-container">
 				<div class="row header-img">
@@ -161,42 +159,44 @@ if(!empty($_POST)){
 						</div>
 					</div>
 				</div>
+			</div>
 		</header>
-<script>
-var pre = document.getElementById("selfile");
+	</div>
+	<script>
+	var pre = document.getElementById("selfile");
 
 
-pre.addEventListener("change", function(evt){
-document.getElementById("wait").innerHTML = "少々お待ちください";
-  var file = evt.target.files;
-  var reader = new FileReader();
-  //dataURL形式でファイルを読み込む
-  reader.readAsDataURL(file[0]);
-  //ファイルの読込が終了した時の処理
-  reader.onload = function(){
-    var dataUrl = reader.result;
-    //読み込んだ画像とdataURLを書き出す
-    document.getElementById("bg").innerHTML = "<img src='" + dataUrl + "' width='300' height='300' >";
-    document.getElementById("dturl").value = dataUrl;
-  }
-},false);
-</script>
-		<!-- END #gtco-header -->
-	<!-- jQuery -->
-	<script src="assets/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="assets/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="assets/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="assets/js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<script src="assets/js/magnific-popup-options.js"></script>
-	<!-- Main -->
-	<script src="assets/js/main.js"></script>
+	pre.addEventListener("change", function(evt){
+	document.getElementById("wait").innerHTML = "少々お待ちください";
+	  var file = evt.target.files;
+	  var reader = new FileReader();
+	  //dataURL形式でファイルを読み込む
+	  reader.readAsDataURL(file[0]);
+	  //ファイルの読込が終了した時の処理
+	  reader.onload = function(){
+	    var dataUrl = reader.result;
+	    //読み込んだ画像とdataURLを書き出す
+	    document.getElementById("bg").innerHTML = "<img src='" + dataUrl + "' width='300' height='300' >";
+	    document.getElementById("dturl").value = dataUrl;
+	  }
+	},false);
+	</script>
+			<!-- END #gtco-header -->
+		<!-- jQuery -->
+		<script src="assets/js/jquery.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="assets/js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="assets/js/bootstrap.min.js"></script>
+		<!-- Waypoints -->
+		<script src="assets/js/jquery.waypoints.min.js"></script>
+		<!-- Carousel -->
+		<script src="assets/js/owl.carousel.min.js"></script>
+		<!-- Magnific Popup -->
+		<script src="assets/js/jquery.magnific-popup.min.js"></script>
+		<script src="assets/js/magnific-popup-options.js"></script>
+		<!-- Main -->
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
