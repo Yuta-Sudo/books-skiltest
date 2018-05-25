@@ -4,8 +4,6 @@ session_start();
 require('func.php');
 login_check();
 
-
-
 //自分のプロフィール情報
 	$myprof_spl = "SELECT `nickname`, `email`, `password`, `profile_pic` , `created` FROM `book_members`WHERE `member_id` = " . $_SESSION['id'];
 	$myprof_stmt = $dbh->prepare($myprof_spl);
@@ -17,7 +15,7 @@ login_check();
 
 //自分のレビュー用
 	$recommends = array();
-	$recommend_spl = "SELECT * FROM `book_recommends` WHERE `member_id` = " . $_SESSION['id'] . " ORDER BY `book_recommends` . `created` DESC";
+	$recommend_spl = "SELECT * FROM `book_recommends` WHERE `book_recommends` . `book_del_flg` = 0 AND `member_id` = " . $_SESSION['id'] . " ORDER BY `book_recommends` . `created` DESC";
 	$recommend_stmt = $dbh->prepare($recommend_spl);
 	$recommend_stmt->execute();
 
@@ -29,17 +27,6 @@ login_check();
 	    }
 	  $recommends[] = $recommend;
 	}
-//検証用
-// echo('<br>');  echo('<br>');
-// echo('<br>');  echo('<br>');
-echo('<br>');  echo('<br>');
-
-echo ('<pre>');
-var_dump($recommends);
-echo ('</pre>');
-// echo ('<pre>');
-// var_dump($myid);
-// echo ('</pre>');
 	?>
 <!DOCTYPE HTML>
 <!--
@@ -51,7 +38,7 @@ echo ('</pre>');
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ホーム</title>
+	<title>マイページ</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
