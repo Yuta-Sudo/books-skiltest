@@ -12,23 +12,12 @@ login_check();
 
 	while (true) {
 	  $recommend = $recommend_stmt->fetch(PDO::FETCH_ASSOC);
-	   // var_dump($recommend);
 	  if ($recommend == false) {
 	    break; // データがなくなったら繰り返し処理を終える
 	    }
 	  $recommends[] = $recommend;
 	}
-//検証用
-// echo('<br>');  echo('<br>');
-// echo('<br>');  echo('<br>');
-// echo('<br>');  echo('<br>');
 
-// echo ('<pre>');
-// var_dump($_SESSION);
-// echo ('</pre>');
-// echo ('<pre>');
-// var_dump($myid);
-// echo ('</pre>');
 	?>
 <!DOCTYPE HTML>
 <!--
@@ -125,13 +114,20 @@ body{
 								<p style="font-size: 18px; margin-top: 4px;">
 								他の人の<br>
 								おすすめ本をみてみよう！
-							  </p>
-							  <p style="font-size: 18px; margin-top: 4px;">
-								タイトルで検索する
+							</p>
+							<form method="get" action="search.php">
+								<p style="font-size: 18px;">
+								<select name="search_cat" style="display: inline;">
+								<option value="bookname">タイトルから</option>
+								<option value="reason">理由から</option>
+								<option value="nickname">ユーザー名から</option>
+								<option value="all">全てから</option>
+								</select>
+								検索
 								</p>
-								<form method="post" =""></form>
-							<input type="text" style="width:172px;">
-							<button type="submit">検索</button>
+								<input type="text" name="search_key" style="width:172px;">
+								<button type="submit">実行</button>
+							</form>
 						</div>
 					</div>
 				</div><?php foreach ($recommends as $review) :?>
