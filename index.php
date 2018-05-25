@@ -92,24 +92,18 @@ if (!empty($_POST) && isset($_POST)) {
 	</style>
 </head>
 <body>
-	<div class="gtco-loader"></div>
+<div class="gtco-loader"></div>
 	<div id="page">
 		<nav class="gtco-nav" role="navigation">
-				<div class="gtco-container" >
-					<div class="row">
-						<div class="col-md-4 col-xs-12">
-							<div><a href="home.php"><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></a></div>
-						</div>
-						<div class="col-xs-8 text-right menu-1">
-							<ul>
-								<li class="active"><a href="home.php">Home</a></li>
-								<li><a href="post.php">投稿する</a></li>
-								<li><a href="mypage.php">マイページ</a></li>
-								<li><a href="logout.php">ログアウト</a></li>
-							</ul>
-						</div>
+			<div class="gtco-container" >
+				<div class="row">
+					<div class="col-sm-4 col-xs-12">
+						<div><h1 style="font-size: 30px; color: #a9a9a9; margin: auto; ">Reccomend your book</h1></div>
+					</div>
+					<div class="col-xs-8 text-right menu-1">
 					</div>
 				</div>
+			</div>
 		</nav>
 		<header id="gtco-header" class="gtco-cover" role="banner"  style="padding-top: 45px;">
 			<div class="gtco-container">
